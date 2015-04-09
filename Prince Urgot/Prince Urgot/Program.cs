@@ -14,7 +14,7 @@ namespace Prince_Urgot
         internal static Menu UrgotConfig;
         internal static Menu TargetSelectorMenu;
         //internal static Orbwalking.Orbwalker Orbwalker;
-        internal static Orbwalker OrbDancer;
+        internal static OrbDancer Orbwalker;
 
         public static void Main(string[] args)
         {
