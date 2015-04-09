@@ -14,7 +14,7 @@ namespace Prince_Urgot
             
         }
         
-        private void GameOnOnGameUpdate(EventArgs args) : base.GameOnOnGameUpdate(args);
+        private void GameOnOnGameUpdate(EventArgs args) : base.GameOnOnGameUpdate(args)
         {
             
             
