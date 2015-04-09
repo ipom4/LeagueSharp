@@ -7,7 +7,7 @@ namespace Prince_Urgot
 {
     internal class OrbDancer : Orbwalking.Orbwalker
     {
-        public void OrbDancer(Menu attachToMenu): base(Menu attachToMenu)
+        public void OrbDancer(Menu attachToMenu): base(attachToMenu)
         {
             
         }
