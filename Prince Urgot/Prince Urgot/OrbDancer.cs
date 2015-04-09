@@ -63,6 +63,7 @@ namespace Prince_Urgot
             }
             else if (owMode == Orbwalking.OrbwalkingMode.Combo)
             {
+                Game.PrintChat(_config.Item("Orbwalk").GetValue<KeyBind>().Active.ToString());
                 _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, true));
                 _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
                 _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
