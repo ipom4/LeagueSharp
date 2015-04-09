@@ -14,12 +14,12 @@ namespace Prince_Urgot
             
         }
         
-        private void GameOnOnGameUpdate(EventArgs args)
+        private void GameOnOnGameUpdate(EventArgs args) : base.GameOnOnGameUpdate(args);
         {
             
             
-            base.GameOnOnGameUpdate(args);
-            /*try
+            
+            try
             {
                 if (ActiveMode == OrbwalkingMode.None)
                 {
@@ -41,7 +41,7 @@ namespace Prince_Urgot
             catch (Exception e)
             {
                 Console.WriteLine(e);
-            }*/
+            }
         }
         
         public void setMode(Orbwalking.OrbwalkingMode owMode)
