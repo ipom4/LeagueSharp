@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using SharpDX;
 using LeagueSharp;
 using LeagueSharp.Common;
 
@@ -7,14 +8,21 @@ namespace Prince_Urgot
 {
     internal class OrbDancer : Orbwalking.Orbwalker
     {
+        private const float LaneClearWaitTimeMod = 2f;
         private static Menu _config;
-        
+        private readonly Obj_AI_Hero Player;
+        private Obj_AI_Base _forcedTarget;
+        private OrbwalkingMode _mode = OrbwalkingMode.None;
+        private Vector3 _orbwalkingPoint;
+        private Obj_AI_Minion _prevMinion;
+            
+            
         public OrbDancer(Menu attachToMenu): base(attachToMenu)
         {
             
         }
         
-        private void GameOnOnGameUpdate(EventArgs args) : base.GameOnOnGameUpdate(args)
+        private void GameOnOnGameUpdate(EventArgs args)
         {
             
             
@@ -33,7 +41,7 @@ namespace Prince_Urgot
                 }
 
                 var target = GetTarget();
-                Orbwalk(
+                Orbwalking.Orbwalk(
                     target, (_orbwalkingPoint.To2D().IsValid()) ? _orbwalkingPoint : Game.CursorPos,
                     _config.Item("ExtraWindup").GetValue<Slider>().Value,
                     _config.Item("HoldPosRadius").GetValue<Slider>().Value);
