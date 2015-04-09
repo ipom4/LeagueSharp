@@ -9,7 +9,7 @@ namespace Prince_Urgot
     {
         private static Menu _config;
         
-        public void OrbDancer(Menu attachToMenu): base(attachToMenu)
+        public OrbDancer(Menu attachToMenu): base(attachToMenu)
         {
             
         }
