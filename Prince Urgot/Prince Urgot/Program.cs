@@ -14,7 +14,7 @@ namespace Prince_Urgot
         internal static Menu UrgotConfig;
         internal static Menu TargetSelectorMenu;
         //internal static Orbwalking.Orbwalker Orbwalker;
-        internal static OrbDancer OrbDancer;
+        internal static Orbwalker OrbDancer;
 
         public static void Main(string[] args)
         {
@@ -40,7 +40,7 @@ namespace Prince_Urgot
 
             UrgotConfig.AddSubMenu(new Menu("Orbwalking", "Orbwalking"));
             //Orbwalker = new Orbwalking.Orbwalker(UrgotConfig.SubMenu("Orbwalking"));
-            OrbDancer = new OrbDancer(UrgotConfig.SubMenu("Orbwalking"));
+            Orbwalker = new OrbDancer(UrgotConfig.SubMenu("Orbwalking"));
 
             TargetSelectorMenu = new Menu("Target Selector", "Common_TargetSelector");
             TargetSelector.AddToMenu(TargetSelectorMenu);
