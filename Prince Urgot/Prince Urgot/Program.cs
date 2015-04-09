@@ -13,7 +13,8 @@ namespace Prince_Urgot
 
         internal static Menu UrgotConfig;
         internal static Menu TargetSelectorMenu;
-        internal static Orbwalking.Orbwalker Orbwalker;
+        //internal static Orbwalking.Orbwalker Orbwalker;
+        internal static OrbDancer OrbDancer;
 
         public static void Main(string[] args)
         {
@@ -38,7 +39,8 @@ namespace Prince_Urgot
             UrgotConfig = new Menu("Prince " + ObjectManager.Player.ChampionName, "Prince" + ObjectManager.Player.ChampionName, true);
 
             UrgotConfig.AddSubMenu(new Menu("Orbwalking", "Orbwalking"));
-            Orbwalker = new Orbwalking.Orbwalker(UrgotConfig.SubMenu("Orbwalking"));
+            //Orbwalker = new Orbwalking.Orbwalker(UrgotConfig.SubMenu("Orbwalking"));
+            OrbDancer = new OrbDancer(UrgotConfig.SubMenu("Orbwalking"));
 
             TargetSelectorMenu = new Menu("Target Selector", "Common_TargetSelector");
             TargetSelector.AddToMenu(TargetSelectorMenu);
@@ -50,6 +52,23 @@ namespace Prince_Urgot
             new ItemClass(UrgotConfig);
             new DrawingClass(UrgotConfig);
             UrgotConfig.AddToMainMenu();
+            
+            
+            
+   /*private static void BuffTest()
+        {
+            foreach (var turret in ObjectManager.Get<Obj_AI_Turret>().Where(t => t.IsVisible && !t.IsMe && (Player.Position.Distance(turret.Position) < 1500f)))
+            {
+                foreach (var bufflist in turret.Buffs)
+                {
+  
+                    Drawing.DrawText(Drawing.WorldToScreen(turret.Position).X, Drawing.WorldToScreen(turret.Position).Y, Color.LimeGreen, string.Format("{0}", bufflist.Name));
+
+                }
+
+            }
+
+        }*/           
         }
     }
 }
