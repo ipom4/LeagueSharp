@@ -55,7 +55,7 @@ namespace Prince_Urgot
         public void setMode(Orbwalking.OrbwalkingMode owMode)
         {
             Game.PrintChat("gtgg");
-            if(_config)
+            if(_config!=null)
             {
                 Game.PrintChat("true");
             }
