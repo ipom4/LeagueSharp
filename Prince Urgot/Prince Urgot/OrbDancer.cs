@@ -12,7 +12,7 @@ namespace Prince_Urgot
         private static Menu _config;
         private readonly Obj_AI_Hero Player;
         private Obj_AI_Base _forcedTarget;
-        private OrbwalkingMode _mode = OrbwalkingMode.None;
+        private Orbwalking.OrbwalkingMode _mode = OrbwalkingMode.None;
         private Vector3 _orbwalkingPoint;
         private Obj_AI_Minion _prevMinion;
             
