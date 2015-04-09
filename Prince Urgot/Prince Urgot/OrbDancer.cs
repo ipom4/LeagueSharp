@@ -54,10 +54,18 @@ namespace Prince_Urgot
         
         public void setMode(Orbwalking.OrbwalkingMode owMode)
         {
-            Game.PrintChat("value");
-            Game.PrintChat(_config.Item("Orbwalk").GetValue<KeyBind>().Active.ToString());
+            if(_config.Item("Orbwalk").GetValue<KeyBind>().Active)
+            {
+                Game.PrintChat("true");
+            }
+            else
+            {
+                Game.PrintChat("false");
+            }
             if (owMode == Orbwalking.OrbwalkingMode.None)
             {
+                Game.PrintChat("None\n");
+
                 _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
                 _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
                 _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
@@ -65,6 +73,7 @@ namespace Prince_Urgot
             }
             else if (owMode == Orbwalking.OrbwalkingMode.Combo)
             {
+                Game.PrintChat("Combo\n");
                 
                 _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, true));
                 _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
@@ -73,6 +82,8 @@ namespace Prince_Urgot
             }
             else if (owMode == Orbwalking.OrbwalkingMode.LaneClear)
             {
+                Game.PrintChat("LaneClear\n");
+
                 _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
                 _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, true));
                 _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
@@ -80,6 +91,8 @@ namespace Prince_Urgot
             }
             else if (owMode == Orbwalking.OrbwalkingMode.Mixed)
             {
+                Game.PrintChat("Mixed\n");
+
                 _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
                 _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
                 _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, true));
@@ -87,6 +100,8 @@ namespace Prince_Urgot
             }
             else if (owMode == Orbwalking.OrbwalkingMode.LastHit)
             {
+                                Game.PrintChat("LH\n");
+
                 _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
                 _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
                 _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
