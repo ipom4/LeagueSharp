@@ -7,10 +7,10 @@ namespace Prince_Urgot
 {
     internal class OrbDancer : Orbwalking.Orbwalker
     {
-        public void OrbDancer(Menu attachToMenu): base(attachToMenu)
+        /*public void OrbDancer(Menu attachToMenu): base(attachToMenu)
         {
             
-        }
+        }*/
         
         override private void GameOnOnGameUpdate(EventArgs args)
         {
