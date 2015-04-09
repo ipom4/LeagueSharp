@@ -12,7 +12,7 @@ namespace Prince_Urgot
             
         }*/
         
-        override private void GameOnOnGameUpdate(EventArgs args)
+        private void GameOnOnGameUpdate(EventArgs args)
         {
             
             
