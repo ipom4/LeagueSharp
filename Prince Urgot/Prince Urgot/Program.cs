@@ -53,6 +53,7 @@ namespace Prince_Urgot
             new DrawingClass(UrgotConfig);
             UrgotConfig.AddToMainMenu();
             
+            Orbwalker.setMode(Orbwalking.OrbwalkingMode.Combo);
             
             
    /*private static void BuffTest()
