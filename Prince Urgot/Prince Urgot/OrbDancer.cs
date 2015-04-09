@@ -5,146 +5,106 @@ using LeagueSharp.Common;
 
 namespace Prince_Urgot
 {
-    internal class ComboClass
+    internal class OrbDancer : Orbwalking.Orbwalker
     {
-        private static Obj_AI_Hero Player
+        public void OrbDancer(Menu attachToMenu): base(Menu attachToMenu)
         {
-            get { return ObjectManager.Player; }
-        }
-        public static bool PacketCast;
-        private static Menu ComboMenu;
-
-        public ComboClass(Menu comboMenu)
-        {
-            ComboMenu = comboMenu;
-            Menu();
-            Game.OnUpdate += Game_OnGameUpdate;
-            Interrupter2.OnInterruptableTarget += Interrupter_OnPossibleToInterrupt;
-        }
-
-        private static void Game_OnGameUpdate(EventArgs args)
-        {
-            if (Player.IsDead)
-                return;
-
-            PacketCast = ComboMenu.SubMenu("misc").Item("packetcast").GetValue<bool>();
-            SpellClass.R.Range = 400 + (150 * SpellClass.R.Level);
-
-            if (Program.Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
-                Combo();
-        }
-        #region Menu
-        internal static void Menu()
-        {
-            ComboMenu.AddSubMenu(new Menu("Combo", "combo"));
-
-            ComboMenu.SubMenu("combo").AddItem(new MenuItem("useQ", "Use Q")).SetValue(true);
-            ComboMenu.SubMenu("combo").AddItem(new MenuItem("useW", "Use W")).SetValue(true);
-            ComboMenu.SubMenu("combo").AddItem(new MenuItem("useE", "Use E")).SetValue(true);
-            ComboMenu.SubMenu("combo").AddItem(new MenuItem("useR", "Use R (Auto R under Tower)")).SetValue(true);
-            ComboMenu.SubMenu("combo").AddItem(new MenuItem("preE", "HitChance E").SetValue(new StringList((new[] { "Low", "Medium", "High", "Very High" }))));
-
-            ComboMenu.AddSubMenu(new Menu("Misc", "misc"));
-            ComboMenu.SubMenu("misc").AddItem(new MenuItem("autoInt", "Interrupt with " + "R").SetValue(false));
-            ComboMenu.SubMenu("misc").AddItem(new MenuItem("packetcast", "Use PacketCast")).SetValue(true);
-        }
-        #endregion
-
-        #region Interrupter
-        private static void Interrupter_OnPossibleToInterrupt (Obj_AI_Base unit, Interrupter2.InterruptableTargetEventArgs args)
-        {
-            if (SpellClass.R.IsReady() && unit.IsEnemy && SpellClass.R.IsInRange(unit) && ComboMenu.Item("autoInt").GetValue<bool>())
-            {
-                SpellClass.R.CastOnUnit(unit, PacketCast);
-            }
-        }
-        #endregion
-
-        #region Combo
-        private static void Combo()
-        {
-            var target = TargetSelector.GetTarget(1200, TargetSelector.DamageType.Physical);
-            var castQ = (ComboMenu.Item("useQ").GetValue<bool>());
-            var castE = (ComboMenu.Item("useW").GetValue<bool>());
-            var castW = (ComboMenu.Item("useE").GetValue<bool>());
-            var castR = (ComboMenu.Item("useR").GetValue<bool>());
-
-            if (target == null)
-            {
-                return;
-            }
-            if (castE)
-            {
-                SpellE(target);
-            }
-            if (castQ)
-            {
-                SpellSecondQ();
-                SpellQ(target);
-            }
-            if (castW)
-            {
-                SpellW(target);
-            }
-            if (castR)
-            {
-                AutoR(target);
-            }
             
         }
-
-        internal static void SpellSecondQ()
+        
+        override private void GameOnOnGameUpdate(EventArgs args)
         {
-            foreach (var obj in
-                ObjectManager.Get<Obj_AI_Hero>()
-                    .Where(obj => obj.IsValidTarget(SpellClass.Q2.Range) && obj.HasBuff("urgotcorrosivedebuff", true)))
+            
+            
+            base.GameOnOnGameUpdate(EventArgs args)
+            /*try
             {
-                SpellClass.Q2.Cast(obj.ServerPosition, PacketCast);
-            }
-        }
+                if (ActiveMode == OrbwalkingMode.None)
+                {
+                    return;
+                }
 
-        internal static void SpellQ(Obj_AI_Base t)
+                //Prevent canceling important spells
+                if (Player.IsCastingInterruptableSpell(true))
+                {
+                    return;
+                }
+
+                var target = GetTarget();
+                Orbwalk(
+                    target, (_orbwalkingPoint.To2D().IsValid()) ? _orbwalkingPoint : Game.CursorPos,
+                    _config.Item("ExtraWindup").GetValue<Slider>().Value,
+                    _config.Item("HoldPosRadius").GetValue<Slider>().Value);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }*/
+        }
+        
+        public void setMode(Orbwalking.OrbwalkingMode owMode)
         {
-            if (t.HasBuff("urgotcorrosivedebuff", true))
-                return;
-
-            if (SpellClass.Q.IsReady() && SpellClass.Q.IsInRange(t))
+            if (owMode == OrbwalkingMode.None)
             {
-                SpellClass.Q.Cast(t, PacketCast);
+                _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
+                _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
+                _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
+                _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Toggle, false));
             }
-        }
-
-        private static void SpellW(Obj_AI_Base t)
-        {
-            var distance = ObjectManager.Player.Distance(t);
-
-            if (SpellClass.W.IsReady() && distance <= 100 || (distance >= 900 && distance <= 1200) && t.HasBuff("urgotcorrosivedebuff", true))
+            else if (owMode == OrbwalkingMode.Combo)
             {
-                SpellClass.W.Cast(Player, PacketCast);
+                _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, true));
+                _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
+                _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
+                _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Toggle, false));                
             }
-        }
-
-        internal static void SpellE(Obj_AI_Base t)
-        {
-            var hitchance = (HitChance)(ComboMenu.Item("preE").GetValue<StringList>().SelectedIndex + 3);
-
-            if (SpellClass.E.IsInRange(t) && SpellClass.E.IsReady())
+            else if (owMode == OrbwalkingMode.LaneClear)
             {
-                SpellClass.E.CastIfHitchanceEquals(t, hitchance, PacketCast);
+                _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
+                _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, true));
+                _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
+                _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Toggle, false));                
             }
-        }
-
-        private static void AutoR(Obj_AI_Base t)
-        {
-            var useR = SpellClass.R.IsInRange(t);
-            var turret = ObjectManager.Get<Obj_AI_Turret>().First(obj => obj.IsAlly && obj.Distance(Player) <= 775f);
-            var minions = MinionManager.GetMinions(turret.ServerPosition, 775, MinionTypes.All, MinionTeam.All);
-
-            if (turret != null && useR && minions == null)
+            else if (owMode == OrbwalkingMode.Mixed)
             {
-                SpellClass.R.Cast(t, true, PacketCast);
+                _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
+                _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
+                _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, true));
+                _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Toggle, false));                
             }
+            else if (owMode == OrbwalkingMode.LastHit)
+            {
+                _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
+                _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
+                _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
+                _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Toggle, true));                
+            }
+
+/*                    if (_config.Item("Orbwalk").GetValue<KeyBind>().Active)
+                    {
+                        return OrbwalkingMode.Combo;
+                    }
+
+                    if (_config.Item("LaneClear").GetValue<KeyBind>().Active)
+                    {
+                        return OrbwalkingMode.LaneClear;
+                    }
+
+                    if (_config.Item("Farm").GetValue<KeyBind>().Active)
+                    {
+                        return OrbwalkingMode.Mixed;
+                    }
+
+                    if (_config.Item("LastHit").GetValue<KeyBind>().Active)
+                    {
+                        return OrbwalkingMode.LastHit;
+                    }
+
+                    return OrbwalkingMode.None;
+            Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, true));
+*/
+
+            
         }
-        #endregion
     }
 }
