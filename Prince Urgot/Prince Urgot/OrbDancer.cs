@@ -18,7 +18,7 @@ namespace Prince_Urgot
         {
             
             
-            base.GameOnOnGameUpdate(EventArgs args);
+            base.GameOnOnGameUpdate(args);
             /*try
             {
                 if (ActiveMode == OrbwalkingMode.None)
