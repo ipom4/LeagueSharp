@@ -11,6 +11,7 @@ namespace Prince_Urgot
         //private const float LaneClearWaitTimeMod = 2f;
         private static Menu _config;
         private static float lastMoveOrder;
+        private static int _delay;
         //private readonly Obj_AI_Hero Player;
         //private Obj_AI_Base _forcedTarget;
         //private Orbwalking.OrbwalkingMode _mode = Orbwalking.OrbwalkingMode.None;
@@ -21,6 +22,7 @@ namespace Prince_Urgot
         public OrbDancer(Menu attachToMenu): base(attachToMenu)
         {
             _config = attachToMenu;
+            _delay = 20;
             Game.OnUpdate += GameOnOnGameUpdate;
         }
         
@@ -30,7 +32,7 @@ namespace Prince_Urgot
             {
                 if (ActiveMode == Orbwalking.OrbwalkingMode.None)
                 {
-                    Orbwalking:MoveTo((_orbwalkingPoint.To2D().IsValid()) ? _orbwalkingPoint : Game.CursorPos,
+                    Orbwalking.MoveTo((_orbwalkingPoint.To2D().IsValid()) ? _orbwalkingPoint : Game.CursorPos,
                         _config.Item("HoldPosRadius").GetValue<Slider>().Value);
                 }
             }
@@ -108,6 +110,56 @@ namespace Prince_Urgot
         {
             base.SetOrbwalkingPoint(point);
             _orbwalkingPoint = point;
+        }
+        
+        private static void MoveTo(Vector3 position,
+            float holdAreaRadius = 0,
+            bool overrideTimer = false,
+            bool useFixedDistance = true,
+            bool randomizeMinDistance = true)
+        {
+            if (Utils.TickCount - LastMoveCommandT < _delay && !overrideTimer)
+            {
+                return;
+            }
+
+            LastMoveCommandT = Utils.TickCount;
+
+            if (Player.ServerPosition.Distance(position, true) < holdAreaRadius * holdAreaRadius)
+            {
+                if (Player.Path.Count() > 1)
+                {
+                    Player.IssueOrder((GameObjectOrder)10, Player.ServerPosition);
+                    Player.IssueOrder(GameObjectOrder.HoldPosition, Player.ServerPosition);
+                    LastMoveCommandPosition = Player.ServerPosition;
+                }
+                return;
+            }
+
+            var point = position;
+            if (useFixedDistance)
+            {
+                point = Player.ServerPosition +
+                        (randomizeMinDistance ? (_random.NextFloat(0.6f, 1) + 0.2f) * _minDistance : _minDistance) *
+                        (position.To2D() - Player.ServerPosition.To2D()).Normalized().To3D();
+            }
+            else
+            {
+                if (randomizeMinDistance)
+                {
+                    point = Player.ServerPosition +
+                            (_random.NextFloat(0.6f, 1) + 0.2f) * _minDistance *
+                            (position.To2D() - Player.ServerPosition.To2D()).Normalized().To3D();
+                }
+                else if (Player.ServerPosition.Distance(position) > _minDistance)
+                {
+                    point = Player.ServerPosition +
+                            _minDistance * (position.To2D() - Player.ServerPosition.To2D()).Normalized().To3D();
+                }
+            }
+
+            Player.IssueOrder(GameObjectOrder.MoveTo, point);
+            LastMoveCommandPosition = point;
         }
     }
 }
