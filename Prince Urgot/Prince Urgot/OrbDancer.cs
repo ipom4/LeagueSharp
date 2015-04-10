@@ -22,8 +22,8 @@ namespace Prince_Urgot
             _config = attachToMenu;
         }
         
-        //private void GameOnOnGameUpdate(EventArgs args)
-        //{
+        private void GameOnOnGameUpdate(EventArgs args)
+        {
             /*try
             {
                 if (ActiveMode == Orbwalking.OrbwalkingMode.None)
@@ -47,7 +47,7 @@ namespace Prince_Urgot
             {
                 Console.WriteLine(e);
             }*/
-        //}
+        }
         
         public void setMode(Orbwalking.OrbwalkingMode owMode)
         {
