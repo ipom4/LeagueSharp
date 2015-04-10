@@ -24,8 +24,6 @@ namespace Prince_Urgot
 
         private static void Game_OnGameUpdate(EventArgs args)
         {
-            Program.Orbwalker.setMode(Orbwalking.OrbwalkingMode.Combo);
-            
             if (Player.IsDead)
                 return;
 
