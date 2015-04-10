@@ -7,14 +7,7 @@ namespace Prince_Urgot
 {
 	internal class DecisionMaker
 	{
-		public enum OrbwalkingMode
-        {
-            LastHit,
-            Mixed,
-            LaneClear,
-            Combo,
-            None
-        }
+
         
 	    private DecisionExecutor DE;
 	    
@@ -37,7 +30,7 @@ namespace Prince_Urgot
 	    
 	    private static void Game_OnGameUpdate(EventArgs args)
 	    {
-	    	DE.setDecision();
+	    	DE.setDecision(DE.DecisionOrder.Kill);
 	    }
 	}
 }
