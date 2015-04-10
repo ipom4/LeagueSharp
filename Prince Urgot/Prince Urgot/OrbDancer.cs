@@ -8,13 +8,13 @@ namespace Prince_Urgot
 {
     internal class OrbDancer : Orbwalking.Orbwalker
     {
-        private const float LaneClearWaitTimeMod = 2f;
+        //private const float LaneClearWaitTimeMod = 2f;
         private static Menu _config;
-        private readonly Obj_AI_Hero Player;
-        private Obj_AI_Base _forcedTarget;
-        private Orbwalking.OrbwalkingMode _mode = Orbwalking.OrbwalkingMode.None;
-        private Vector3 _orbwalkingPoint;
-        private Obj_AI_Minion _prevMinion;
+        //private readonly Obj_AI_Hero Player;
+        //private Obj_AI_Base _forcedTarget;
+        //private Orbwalking.OrbwalkingMode _mode = Orbwalking.OrbwalkingMode.None;
+        //private Vector3 _orbwalkingPoint;
+        //private Obj_AI_Minion _prevMinion;
 
 
         public OrbDancer(Menu attachToMenu): base(attachToMenu)
@@ -25,7 +25,6 @@ namespace Prince_Urgot
         
         private void GameOnOnGameUpdate(EventArgs args)
         {
-            Game.PrintChat("onup");
             /*try
             {
                 if (ActiveMode == Orbwalking.OrbwalkingMode.None)
@@ -53,15 +52,6 @@ namespace Prince_Urgot
         
         public void setMode(Orbwalking.OrbwalkingMode owMode)
         {
-            Game.PrintChat("gtgg");
-            if(_config!=null)
-            {
-                Game.PrintChat("true");
-            }
-            else
-            {
-                Game.PrintChat("false");
-            }
             if (owMode == Orbwalking.OrbwalkingMode.None)
             {
                 Game.PrintChat("None\n");
@@ -131,8 +121,6 @@ namespace Prince_Urgot
                     return OrbwalkingMode.None;
             Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, true));
 */
-
-            
         }
     }
 }
