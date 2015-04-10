@@ -37,7 +37,7 @@ namespace Prince_Urgot
             {
                 if (ActiveMode == Orbwalking.OrbwalkingMode.None)
                 {
-                    this.MoveTo((_orbwalkingPoint.To2D().IsValid()) ? _orbwalkingPoint : Game.CursorPos,
+                    OrbDancer.MoveTo((_orbwalkingPoint.To2D().IsValid()) ? _orbwalkingPoint : Game.CursorPos,
                         _config.Item("HoldPosRadius").GetValue<Slider>().Value);
                 }
             }
