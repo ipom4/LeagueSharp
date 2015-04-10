@@ -20,6 +20,7 @@ namespace Prince_Urgot
         public OrbDancer(Menu attachToMenu): base(attachToMenu)
         {
             _config = attachToMenu;
+            Game.OnUpdate += GameOnOnGameUpdate;
         }
         
         private void GameOnOnGameUpdate(EventArgs args)
