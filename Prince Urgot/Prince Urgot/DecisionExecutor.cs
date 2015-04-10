@@ -7,10 +7,20 @@ namespace Prince_Urgot
 {
     internal class DecisionExecutor
     {
-        private static Obj_AI_Hero Player
-        {
+	    public static enum DecisionOrder
+	   {
+	            Kill,
+	            Mixed,
+	            LaneClear,
+	            Combo,
+	            None
+	   }
+	    
+	        
+	   private static Obj_AI_Hero Player
+       {
             get { return ObjectManager.Player; }
-        }
+       }
 
         public DecisionExecutor(Menu comboMenu)
         {
@@ -19,14 +29,7 @@ namespace Prince_Urgot
 
         private static void Game_OnGameUpdate(EventArgs args)
         {
-            if (Player.IsDead)
-                return;
-
-            PacketCast = ComboMenu.SubMenu("misc").Item("packetcast").GetValue<bool>();
-            SpellClass.R.Range = 400 + (150 * SpellClass.R.Level);
-
-            if (Program.Orbwalker.ActiveMode == Orbwalking.OrbwalkingMode.Combo)
-                Combo();
+            
         }
     }
 }
