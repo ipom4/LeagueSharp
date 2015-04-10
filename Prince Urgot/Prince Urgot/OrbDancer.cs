@@ -14,7 +14,7 @@ namespace Prince_Urgot
         //private readonly Obj_AI_Hero Player;
         //private Obj_AI_Base _forcedTarget;
         //private Orbwalking.OrbwalkingMode _mode = Orbwalking.OrbwalkingMode.None;
-        //private Vector3 _orbwalkingPoint;
+        private Vector3 _orbwalkingPoint;
         //private Obj_AI_Minion _prevMinion;
 
 
@@ -103,7 +103,15 @@ namespace Prince_Urgot
                 _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
                 _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Toggle, true));                
             }
-
+        }
+        
+        /// <summary>
+        ///     Forces the orbwalker to move to that point while orbwalking (Game.CursorPos by default).
+        /// </summary>
+        public void SetOrbwalkingPoint(Vector3 point) 
+        {
+            base.SetOrbwalkingPoint(point);
+            _orbwalkingPoint = point;
         }
     }
 }
