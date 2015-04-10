@@ -12,7 +12,9 @@ namespace Prince_Urgot
         private static Menu _config;
         private static float lastMoveOrder;
         private static int _delay;
-        //private readonly Obj_AI_Hero Player;
+        public static int LastMoveCommandT;
+        public static Vector3 LastMoveCommandPosition = Vector3.Zero;
+        private readonly Obj_AI_Hero Player;
         //private Obj_AI_Base _forcedTarget;
         //private Orbwalking.OrbwalkingMode _mode = Orbwalking.OrbwalkingMode.None;
         private Vector3 _orbwalkingPoint;
@@ -23,6 +25,7 @@ namespace Prince_Urgot
         {
             _config = attachToMenu;
             _delay = 20;
+            Player = ObjectManager.Player;
             Game.OnUpdate += GameOnOnGameUpdate;
         }
         
