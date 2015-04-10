@@ -15,19 +15,16 @@ namespace Prince_Urgot
         private Orbwalking.OrbwalkingMode _mode = Orbwalking.OrbwalkingMode.None;
         private Vector3 _orbwalkingPoint;
         private Obj_AI_Minion _prevMinion;
-            
-            
+
+
         public OrbDancer(Menu attachToMenu): base(attachToMenu)
         {
-            
+            _config = attachToMenu;
         }
         
-        private void GameOnOnGameUpdate(EventArgs args)
-        {
-            
-            
-            
-            try
+        //private void GameOnOnGameUpdate(EventArgs args)
+        //{
+            /*try
             {
                 if (ActiveMode == Orbwalking.OrbwalkingMode.None)
                 {
@@ -49,8 +46,8 @@ namespace Prince_Urgot
             catch (Exception e)
             {
                 Console.WriteLine(e);
-            }
-        }
+            }*/
+        //}
         
         public void setMode(Orbwalking.OrbwalkingMode owMode)
         {
