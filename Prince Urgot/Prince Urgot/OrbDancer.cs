@@ -19,6 +19,8 @@ namespace Prince_Urgot
         //private Orbwalking.OrbwalkingMode _mode = Orbwalking.OrbwalkingMode.None;
         private Vector3 _orbwalkingPoint;
         //private Obj_AI_Minion _prevMinion;
+        private static float _minDistance = 400;
+        private static readonly Random _random = new Random(DateTime.Now.Millisecond);
 
 
         public OrbDancer(Menu attachToMenu): base(attachToMenu)
