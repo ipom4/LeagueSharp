@@ -14,7 +14,7 @@ namespace Prince_Urgot
         private static int _delay;
         public static int LastMoveCommandT;
         public static Vector3 LastMoveCommandPosition = Vector3.Zero;
-        private readonly Obj_AI_Hero Player;
+        private static readonly Obj_AI_Hero Player;
         //private Obj_AI_Base _forcedTarget;
         //private Orbwalking.OrbwalkingMode _mode = Orbwalking.OrbwalkingMode.None;
         private Vector3 _orbwalkingPoint;
