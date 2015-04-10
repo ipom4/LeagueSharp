@@ -10,7 +10,7 @@ namespace Prince_Urgot
     {
         //private const float LaneClearWaitTimeMod = 2f;
         private static Menu _config;
-        private static int lastClick
+        private static float lastMoveOrder;
         //private readonly Obj_AI_Hero Player;
         //private Obj_AI_Base _forcedTarget;
         //private Orbwalking.OrbwalkingMode _mode = Orbwalking.OrbwalkingMode.None;
