@@ -53,23 +53,16 @@ namespace Prince_Urgot
             new DrawingClass(UrgotConfig);
             UrgotConfig.AddToMainMenu();
             
-            Orbwalker.setMode(Orbwalking.OrbwalkingMode.Combo);
-            
-            
-   /*private static void BuffTest()
-        {
-            foreach (var turret in ObjectManager.Get<Obj_AI_Turret>().Where(t => t.IsVisible && !t.IsMe && (Player.Position.Distance(turret.Position) < 1500f)))
-            {
-                foreach (var bufflist in turret.Buffs)
-                {
-  
-                    Drawing.DrawText(Drawing.WorldToScreen(turret.Position).X, Drawing.WorldToScreen(turret.Position).Y, Color.LimeGreen, string.Format("{0}", bufflist.Name));
+            Game.OnUpdate += Game_OnGameUpdate;
+         }    
 
-                }
-
-            }
-
-        }*/           
-        }
+    	    
+    	
+	    private static void Game_OnGameUpdate(EventArgs args)
+	    {
+	        Orbwalker.setMode(Orbwalking.OrbwalkingMode.Combo);
+	    	var furthest_minion = ObjectManager.Get<Obj_AI_Minion>().Where(minion => minion.IsAlly && !minion.IsDead).OrderBy(turr => turr.Distance(ObjectManager.Player)).First();
+	    }        
+       
     }
 }
