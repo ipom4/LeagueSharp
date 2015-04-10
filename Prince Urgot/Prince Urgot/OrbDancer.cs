@@ -24,6 +24,7 @@ namespace Prince_Urgot
         
         private void GameOnOnGameUpdate(EventArgs args)
         {
+            Game.PrintChat("onup");
             /*try
             {
                 if (ActiveMode == Orbwalking.OrbwalkingMode.None)
@@ -98,7 +99,7 @@ namespace Prince_Urgot
             }
             else if (owMode == Orbwalking.OrbwalkingMode.LastHit)
             {
-                                Game.PrintChat("LH\n");
+                Game.PrintChat("LH\n");
 
                 _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
                 _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
