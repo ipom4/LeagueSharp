@@ -26,9 +26,23 @@ namespace Prince_Urgot
         
         private void GameOnOnGameUpdate(EventArgs args)
         {
-            
-            /*try
+            try
             {
+                if (ActiveMode == Orbwalking.OrbwalkingMode.None)
+                {
+                    Orbwalking.MoveTo(
+                        (_orbwalkingPoint.To2D().IsValid()) ? _orbwalkingPoint : Game.CursorPos,
+                        _config.Item("HoldPosRadius").GetValue<Slider>().Value,
+                        false,
+                        true,
+                        true);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            /*
                 if (ActiveMode == Orbwalking.OrbwalkingMode.None)
                 {
                     return;
