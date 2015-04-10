@@ -10,6 +10,7 @@ namespace Prince_Urgot
     {
         //private const float LaneClearWaitTimeMod = 2f;
         private static Menu _config;
+        private static int lastClick
         //private readonly Obj_AI_Hero Player;
         //private Obj_AI_Base _forcedTarget;
         //private Orbwalking.OrbwalkingMode _mode = Orbwalking.OrbwalkingMode.None;
@@ -25,6 +26,7 @@ namespace Prince_Urgot
         
         private void GameOnOnGameUpdate(EventArgs args)
         {
+            
             /*try
             {
                 if (ActiveMode == Orbwalking.OrbwalkingMode.None)
@@ -54,8 +56,6 @@ namespace Prince_Urgot
         {
             if (owMode == Orbwalking.OrbwalkingMode.None)
             {
-                Game.PrintChat("None\n");
-
                 _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
                 _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
                 _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
@@ -63,8 +63,6 @@ namespace Prince_Urgot
             }
             else if (owMode == Orbwalking.OrbwalkingMode.Combo)
             {
-                Game.PrintChat("Combo\n");
-                
                 _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, true));
                 _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
                 _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
@@ -72,8 +70,6 @@ namespace Prince_Urgot
             }
             else if (owMode == Orbwalking.OrbwalkingMode.LaneClear)
             {
-                Game.PrintChat("LaneClear\n");
-
                 _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
                 _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, true));
                 _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
@@ -81,8 +77,6 @@ namespace Prince_Urgot
             }
             else if (owMode == Orbwalking.OrbwalkingMode.Mixed)
             {
-                Game.PrintChat("Mixed\n");
-
                 _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
                 _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
                 _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, true));
@@ -90,37 +84,12 @@ namespace Prince_Urgot
             }
             else if (owMode == Orbwalking.OrbwalkingMode.LastHit)
             {
-                Game.PrintChat("LH\n");
-
                 _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
                 _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
                 _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
                 _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Toggle, true));                
             }
 
-/*                    if (_config.Item("Orbwalk").GetValue<KeyBind>().Active)
-                    {
-                        return OrbwalkingMode.Combo;
-                    }
-
-                    if (_config.Item("LaneClear").GetValue<KeyBind>().Active)
-                    {
-                        return OrbwalkingMode.LaneClear;
-                    }
-
-                    if (_config.Item("Farm").GetValue<KeyBind>().Active)
-                    {
-                        return OrbwalkingMode.Mixed;
-                    }
-
-                    if (_config.Item("LastHit").GetValue<KeyBind>().Active)
-                    {
-                        return OrbwalkingMode.LastHit;
-                    }
-
-                    return OrbwalkingMode.None;
-            Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, true));
-*/
         }
     }
 }
