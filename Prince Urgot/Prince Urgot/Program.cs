@@ -30,7 +30,7 @@ namespace Prince_Urgot
                 return;
             }
             
-            ShitNexus = ObjectManager.Get<Obj_HQ>().First(n => n.Team != Player.Team);
+            ShitNexus = ObjectManager.Get<Obj_HQ>().Where(nex => nex.Team != Player.Team).First();
             MainMenu();
             new SpellClass();
 
@@ -59,9 +59,9 @@ namespace Prince_Urgot
             Game.OnUpdate += GameOnOnGameUpdate;         
         }
         
-        private void GameOnOnGameUpdate(EventArgs args)
+        private static void GameOnOnGameUpdate(EventArgs args)
         {
-            var minionChef = ObjectManager.Get<Obj_AI_Minion>().OrderBy(m => m.Distance(ShitNexus, true)).First(m => m.Team == Player.Team);
+            var minionChef = ObjectManager.Get<Obj_AI_Minion>().Where(m => m.Team == Player.Team).OrderBy(m => m.Distance(ShitNexus, true)).First();
             
             var target = TargetSelector.GetTarget(-1, TargetSelector.DamageType.Physical);
             if (target != null)
