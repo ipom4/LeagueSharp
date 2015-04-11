@@ -78,7 +78,7 @@ namespace Prince_Urgot
             {
                 Orbwalker.setMode(Orbwalking.OrbwalkingMode.LaneClear);
                 //Orbwalker.SetOrbwalkingPoint(minionChef.Position);
-                Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 100);
+                Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 10);
             }
             
         }
