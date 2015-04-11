@@ -30,6 +30,8 @@ namespace Prince_Urgot
             {
                 return;
             }
+            new AutoLevel(TreesAutoLevel.GetSequence().Select(l=>l-1));
+            AutoLevel.Enable();
             
             ShitNexus = ObjectManager.Get<Obj_HQ>().First(n => n.Team != Player.Team);
             MainMenu();
@@ -69,15 +71,15 @@ namespace Prince_Urgot
             if (target != null)
             {
                 Orbwalker.setMode(Orbwalking.OrbwalkingMode.Combo);
-                Orbwalker.SetOrbwalkingPoint(minionChef.Position);//(target.Position - minionChef.Position)*0.5f+minionChef.Position);
+                //Orbwalker.SetOrbwalkingPoint(minionChef.Position);//(target.Position - minionChef.Position)*0.5f+minionChef.Position);
+                Orbwalker.BaseSideTurnAround(minionChef.Position, 10);
             }
             else
             {
                 Orbwalker.setMode(Orbwalking.OrbwalkingMode.LaneClear);
-                Orbwalker.SetOrbwalkingPoint(minionChef.Position);
+                //Orbwalker.SetOrbwalkingPoint(minionChef.Position);
+                Orbwalker.BaseSideTurnAround(minionChef.Position, 100);
             }
-
-            
             
         }
     }
