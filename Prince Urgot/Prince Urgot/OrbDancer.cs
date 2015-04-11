@@ -22,7 +22,7 @@ namespace Prince_Urgot
         private static readonly Random _random = new Random(DateTime.Now.Millisecond);
        
         
-        public static enum MoveModeType
+        public enum MoveModeType
         {
             WalkAround,
             BaseSideTurnAround,
