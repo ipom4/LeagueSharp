@@ -9,7 +9,7 @@ using LeagueSharp.Common;
 
 #endregion
 
-namespace Support
+namespace Prince_Urgot
 {
     internal class TreesAutoLevel
     {
