@@ -73,38 +73,38 @@ namespace Prince_Urgot
         {
             if (owMode == Orbwalking.OrbwalkingMode.None)
             {
-                _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
-                _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
-                _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
-                _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Toggle, false));
+                _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Press, false));
+                _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Press, false));
+                _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Press, false));
+                _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Press, false));
             }
             else if (owMode == Orbwalking.OrbwalkingMode.Combo)
             {
-                _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, true));
-                _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
-                _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
-                _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Toggle, false));                
+                _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Press, true));
+                _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Press, false));
+                _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Press, false));
+                _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Press, false));                
             }
             else if (owMode == Orbwalking.OrbwalkingMode.LaneClear)
             {
-                _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
-                _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, true));
-                _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
-                _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Toggle, false));                
+                _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Press, false));
+                _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Press, true));
+                _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Press, false));
+                _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Press, false));                
             }
             else if (owMode == Orbwalking.OrbwalkingMode.Mixed)
             {
-                _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
-                _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
-                _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, true));
-                _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Toggle, false));                
+                _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Press, false));
+                _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Press, false));
+                _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Press, true));
+                _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Press, false));                
             }
             else if (owMode == Orbwalking.OrbwalkingMode.LastHit)
             {
-                _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Toggle, false));
-                _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Toggle, false));
-                _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Toggle, false));
-                _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Toggle, true));                
+                _config.Item("Orbwalk").SetValue<KeyBind>(new KeyBind(32, KeyBindType.Press, false));
+                _config.Item("LaneClear").SetValue<KeyBind>(new KeyBind('V', KeyBindType.Press, false));
+                _config.Item("Farm").SetValue<KeyBind>(new KeyBind('+', KeyBindType.Press, false));
+                _config.Item("LastHit").SetValue<KeyBind>(new KeyBind('X', KeyBindType.Press, true));                
             }
         }
         
