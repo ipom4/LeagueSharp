@@ -16,7 +16,7 @@ namespace Prince_Urgot
         //internal static Orbwalking.Orbwalker Orbwalker;
         internal static OrbDancer Orbwalker;
         
-        public static var ShitNexus = ObjectManager.Get<Obj_HQ>().Find(n => n.Team != Player.Team).First();
+        public static Obj_HQ ShitNexus = ObjectManager.Get<Obj_HQ>().Find(n => n.Team != Player.Team).First();
 
         public static void Main(string[] args)
         {
