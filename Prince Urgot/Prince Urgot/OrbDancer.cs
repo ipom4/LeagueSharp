@@ -182,7 +182,7 @@ namespace Prince_Urgot
         
         public void setMoveMode(MoveModeType movemode, GameObject target, float radius)
         {
-            _moveModeTarget = target
+            _moveModeTarget = target;
             _moveMode = movemode;
             _moveModeRadius = radius;
         }
@@ -192,11 +192,11 @@ namespace Prince_Urgot
             if((Game.Time-_lastMoveModeTick) > _moveModeLapse)
             {
                 float x = _random.NextFloat(-radius, radius);
-                float limz = Math.sqrt(radius * radius - x * x);
+                float limz = (float)Math.Sqrt(radius * radius - x * x);
                 
                 float z = _random.NextFloat(-limz, limz);
     
-                SetOrbwalkingPoint(Vector3(x, 0, z)+target.Position);
+                SetOrbwalkingPoint(new Vector3(x, 0, z)+target.Position);
                 
                 _lastMoveModeTick = Game.Time;
                 //_moveModeLapse = _random.NextFloat(0, _moveModeLapseLim);
