@@ -76,9 +76,9 @@ namespace Prince_Urgot
                 Console.WriteLine(e);
             }
 
-            if (_moveMode == MoveModeType.BaseSideTurnAround)
+            if (_moveMode == MoveModeType.WalkAround)
             {
-                
+                WalkAround(_moveModeTarget, _moveModeRadius);
             }
         }
         
