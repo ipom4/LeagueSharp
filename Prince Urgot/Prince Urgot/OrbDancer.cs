@@ -192,7 +192,7 @@ namespace Prince_Urgot
             if((Game.Time-_lastMoveModeTick) > _moveModeLapse)
             {
                 float x = _random.NextFloat(-radius, radius);
-                float limz = (float)Math.Sqrt(radius * radius - x * x);
+                float limz = Math.Sqrt(radius * radius - x * x);
                 
                 float z = _random.NextFloat(-limz, limz);
     
