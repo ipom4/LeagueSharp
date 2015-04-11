@@ -68,7 +68,7 @@ namespace Prince_Urgot
             if (target != null)
             {
                 Orbwalker.setMode(Orbwalking.OrbwalkingMode.Combo);
-                Orbwalker.SetOrbwalkingPoint((target.Position - minionChef.Position)*0.5f+minionChef.Position);
+                Orbwalker.SetOrbwalkingPoint(minionChef.Position);//(target.Position - minionChef.Position)*0.5f+minionChef.Position);
             }
             else
             {
