@@ -33,7 +33,8 @@ namespace Prince_Urgot
         private GameObject _moveModeTarget;
         private float _moveModeRadius = 0;
         private MoveModeType _moveMode;
-
+        private float _lastMoveModeTick;
+        private float _moveModeLapse = 200;
 
         public OrbDancer(Menu attachToMenu): base(attachToMenu)
         {
@@ -188,7 +189,17 @@ namespace Prince_Urgot
 
         private void WalkAround(GameObject target, float radius)
         {
-            
+            if((Game.Time-_lastMoveModeTick) > _moveModeLapse)
+            {
+                float x = _random.NextFloat(-radius, radius);
+                float limz = Math.sqrt(radius * radius - x * x);
+                
+                float z = _random.NextFloat(-limz, limz);
+    
+                SetOrbwalkingPoint(Vector3(x, 0, z));
+                
+                _lastMoveModeTick = Game.Time;
+            }
         }
         
         private void BaseSideTurnAround(GameObject target, float radius)
