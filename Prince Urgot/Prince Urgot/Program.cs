@@ -17,7 +17,7 @@ namespace Prince_Urgot
         //internal static Orbwalking.Orbwalker Orbwalker;
         internal static OrbDancer Orbwalker;
         
-        public static Obj_HQ ShitNexus = ObjectManager.Get<Obj_HQ>().Find(n => n.Team != Player.Team).First();
+        public static Obj_HQ ShitNexus = ObjectManager.Get<Obj_HQ>().First(n => n.Team != Player.Team);
 
         public static void Main(string[] args)
         {
@@ -68,12 +68,12 @@ namespace Prince_Urgot
             if (target != null)
             {
                 Orbwalker.setMode(Orbwalking.OrbwalkingMode.Combo);
-                Orbwalker.SetOrbwalkingPoint((target.Position - minionChef.Position)*0.5+minionChef.Position);
+                Orbwalker.SetOrbwalkingPoint((target.Position - minionChef.Position)*0.5f+minionChef.Position);
             }
             else
             {
                 Orbwalker.setMode(Orbwalking.OrbwalkingMode.LaneClear);
-                Orbwalker.MoveTo(minionChef.Position);
+                Orbwalker.SetOrbwalkingPoint(minionChef.Position);
             }
 
             
