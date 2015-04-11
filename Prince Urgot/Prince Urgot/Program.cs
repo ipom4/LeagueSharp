@@ -15,6 +15,8 @@ namespace Prince_Urgot
         internal static Menu TargetSelectorMenu;
         //internal static Orbwalking.Orbwalker Orbwalker;
         internal static OrbDancer Orbwalker;
+        
+        public static var ShitNexus = ObjectManager.Get<Obj_HQ>().Find(n => n.Team != Player.Team).First();
 
         public static void Main(string[] args)
         {
@@ -27,7 +29,8 @@ namespace Prince_Urgot
             {
                 return;
             }
-
+            
+            ShitNexus = ObjectManager.Get<Obj_HQ>().First(n => n.Team != Player.Team);
             MainMenu();
             new SpellClass();
 
@@ -53,23 +56,27 @@ namespace Prince_Urgot
             new DrawingClass(UrgotConfig);
             UrgotConfig.AddToMainMenu();
             
-            Orbwalker.setMode(Orbwalking.OrbwalkingMode.Combo);
-            
-            
-   /*private static void BuffTest()
+            Game.OnUpdate += GameOnOnGameUpdate;         
+        }
+        
+        private void GameOnOnGameUpdate(EventArgs args)
         {
-            foreach (var turret in ObjectManager.Get<Obj_AI_Turret>().Where(t => t.IsVisible && !t.IsMe && (Player.Position.Distance(turret.Position) < 1500f)))
+            var minionChef = ObjectManager.Get<Obj_AI_Minion>().OrderBy(m => m.Distance(ShitNexus, true)).First(m => m.Team == Player.Team);
+            
+            var target = TargetSelector.GetTarget(-1, TargetSelector.DamageType.Physical);
+            if (target != null)
             {
-                foreach (var bufflist in turret.Buffs)
-                {
-  
-                    Drawing.DrawText(Drawing.WorldToScreen(turret.Position).X, Drawing.WorldToScreen(turret.Position).Y, Color.LimeGreen, string.Format("{0}", bufflist.Name));
-
-                }
-
+                Orbwalker.setMode(Orbwalking.OrbwalkingMode.Combo);
+                Orbwalker.SetOrbwalkingPoint((target.Position - minionChef.Position)*0.5+minionChef.Position);
+            }
+            else
+            {
+                Orbwalker.setMode(Orbwalking.OrbwalkingMode.LaneClear);
+                Orbwalker.MoveTo(minionChef.Position);
             }
 
-        }*/           
+            
+            
         }
     }
 }
