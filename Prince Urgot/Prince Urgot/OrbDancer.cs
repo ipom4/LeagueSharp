@@ -10,7 +10,6 @@ namespace Prince_Urgot
     {
         //private const float LaneClearWaitTimeMod = 2f;
         private static Menu _config;
-        private static float lastMoveOrder;
         private static int _delay;
         public static int LastMoveCommandT;
         public static Vector3 LastMoveCommandPosition = Vector3.Zero;
@@ -21,6 +20,19 @@ namespace Prince_Urgot
         //private Obj_AI_Minion _prevMinion;
         private static float _minDistance = 400;
         private static readonly Random _random = new Random(DateTime.Now.Millisecond);
+       
+        
+        public static enum MoveModeType
+        {
+            WalkAround,
+            BaseSideTurnAround,
+            Flee,
+            None
+        }        
+        
+        private GameObject _moveModeTarget;
+        private float _moveModeRadius = 0;
+        private MoveModeType _moveMode;
 
 
         public OrbDancer(Menu attachToMenu): base(attachToMenu)
@@ -28,8 +40,24 @@ namespace Prince_Urgot
             _config = attachToMenu;
             _delay = 20;
             Player = ObjectManager.Player;
+            _moveMode = MoveModeType.None;
             Game.OnUpdate += GameOnOnGameUpdate;
         }
+        
+        public ClosestAlliedTurret()
+        {
+            return ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(Player, true)).First(t => t.IsAlly);
+        }
+        
+        public ClosestEnemyTurret()
+        {
+            return ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(Player, true)).First(t => t.IsEnemy);
+        }
+        
+        public ClosestAliveEnemyTurret()
+        {
+            return ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(Player, true)).First(t => (!t.IsDead) && t.IsEnemy);
+        }        
         
         private void GameOnOnGameUpdate(EventArgs args)
         {
@@ -45,28 +73,11 @@ namespace Prince_Urgot
             {
                 Console.WriteLine(e);
             }
-            /*
-                if (ActiveMode == Orbwalking.OrbwalkingMode.None)
-                {
-                    return;
-                }
 
-                //Prevent canceling important spells
-                if (Player.IsCastingInterruptableSpell(true))
-                {
-                    return;
-                }
-
-                var target = GetTarget();
-                Orbwalking.Orbwalk(
-                    target, (_orbwalkingPoint.To2D().IsValid()) ? _orbwalkingPoint : Game.CursorPos,
-                    _config.Item("ExtraWindup").GetValue<Slider>().Value,
-                    _config.Item("HoldPosRadius").GetValue<Slider>().Value);
-            }
-            catch (Exception e)
+            if (_moveMode == MoveModeType.BaseSideTurnAround)
             {
-                Console.WriteLine(e);
-            }*/
+                
+            }
         }
         
         public void setMode(Orbwalking.OrbwalkingMode owMode)
@@ -165,6 +176,24 @@ namespace Prince_Urgot
 
             Player.IssueOrder(GameObjectOrder.MoveTo, point);
             LastMoveCommandPosition = point;
+        }
+        
+        public void setMoveMode(MoveModeType movemode, GameObject target, float radius)
+        {
+            
+            _moveModeTarget = target
+            _moveMode = movemode;
+            _moveModeRadius = radius;
+        }
+
+        private void WalkAround(GameObject target, float radius)
+        {
+            
+        }
+        
+        private void BaseSideTurnAround(GameObject target, float radius)
+        {
+            
         }
     }
 }
