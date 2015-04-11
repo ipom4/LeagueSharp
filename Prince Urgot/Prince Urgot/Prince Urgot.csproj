@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ComboClass.cs" />
+    <Compile Include="TreesAutoLevel.cs" />
     <Compile Include="DrawingClass.cs" />
     <Compile Include="HarassClass.cs" />
     <Compile Include="ItemClass.cs" />
@@ -86,7 +87,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpellClass.cs" />
-    <Compile Include="TreesAutoLevel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
