@@ -34,7 +34,7 @@ namespace Prince_Urgot
         private float _moveModeRadius = 0;
         private MoveModeType _moveMode;
         private float _lastMoveModeTick;
-        private float _moveModeLapse = 3000;
+        private float _moveModeLapse = 5;
         private float _moveModeLapseLim = 200;
         
         public OrbDancer(Menu attachToMenu): base(attachToMenu)
