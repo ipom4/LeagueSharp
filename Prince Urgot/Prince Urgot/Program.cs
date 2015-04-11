@@ -60,7 +60,7 @@ namespace Prince_Urgot
             Game.OnUpdate += GameOnOnGameUpdate;         
         }
         
-        private void GameOnOnGameUpdate(EventArgs args)
+        private static void GameOnOnGameUpdate(EventArgs args)
         {
             var minionChef = ObjectManager.Get<Obj_AI_Minion>().OrderBy(m => m.Distance(ShitNexus, true)).First(m => m.Team == Player.Team);
             
