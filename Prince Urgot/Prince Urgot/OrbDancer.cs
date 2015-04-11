@@ -35,7 +35,8 @@ namespace Prince_Urgot
         private MoveModeType _moveMode;
         private float _lastMoveModeTick;
         private float _moveModeLapse = 200;
-
+        private float _moveModeLapseLim = 200;
+        
         public OrbDancer(Menu attachToMenu): base(attachToMenu)
         {
             _config = attachToMenu;
@@ -198,6 +199,7 @@ namespace Prince_Urgot
                 SetOrbwalkingPoint(Vector3(x, 0, z)+target.Position);
                 
                 _lastMoveModeTick = Game.Time;
+                //_moveModeLapse = _random.NextFloat(0, _moveModeLapseLim);
             }
         }
         
