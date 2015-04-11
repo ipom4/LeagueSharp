@@ -45,17 +45,17 @@ namespace Prince_Urgot
             Game.OnUpdate += GameOnOnGameUpdate;
         }
         
-        public ClosestAlliedTurret()
+        public Obj_AI_Turret ClosestAlliedTurret()
         {
             return ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(Player, true)).First(t => t.IsAlly);
         }
         
-        public ClosestEnemyTurret()
+        public Obj_AI_Turret ClosestEnemyTurret()
         {
             return ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(Player, true)).First(t => t.IsEnemy);
         }
         
-        public ClosestAliveEnemyTurret()
+        public Obj_AI_Turret ClosestAliveEnemyTurret()
         {
             return ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(Player, true)).First(t => (!t.IsDead) && t.IsEnemy);
         }        
