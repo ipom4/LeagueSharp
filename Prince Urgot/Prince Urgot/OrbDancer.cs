@@ -218,6 +218,7 @@ namespace Prince_Urgot
                 
                 Render.Circle.DrawCircle(tt.Position, 65, _config.Item("AACircle").GetValue<Circle>().Color);
                 Game.PrintChat(tt.Name);
+                Game.PrintChat(tt.Distance((Obj_AI_Minion)_moveModeTarget, true).ToString());
             }
         }
     }
