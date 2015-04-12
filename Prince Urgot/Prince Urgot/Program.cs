@@ -88,7 +88,7 @@ namespace Prince_Urgot
             }
             if (SpellClass.D.IsReady())
             {
-                SpellClass.D.Cast(Player,  minionChef);
+                SpellClass.D.Cast(minionChef, true);
             }
         }
     }
