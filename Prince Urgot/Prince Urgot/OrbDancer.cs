@@ -214,7 +214,7 @@ namespace Prince_Urgot
             if(_moveModeTarget!=null)
             {
                 Render.Circle.DrawCircle(_moveModeTarget.Position, 65, _config.Item("AACircle").GetValue<Circle>().Color);
-                Obj_AI_Turret tt = ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(_moveModeTarget, true)).First(t => t.Team != _moveModeTarget.Team);
+                GameObject tt = ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(_moveModeTarget, true)).First(t => t.Team != _moveModeTarget.Team);
                 
                 Render.Circle.DrawCircle(tt.Position, 65, _config.Item("AACircle").GetValue<Circle>().Color);
                 
