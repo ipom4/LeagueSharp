@@ -217,8 +217,8 @@ namespace Prince_Urgot
                 GameObject tt = (GameObject)ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance((Obj_AI_Minion)_moveModeTarget, true)).First(t => t.Team != _moveModeTarget.Team);
                 
                 Render.Circle.DrawCircle(tt.Position, 65, _config.Item("AACircle").GetValue<Circle>().Color);
-                Game.PrintChat(tt.Name);
-                Game.PrintChat(((Obj_AI_Turret)tt).Distance(Player, true).ToString());
+                //Game.PrintChat(tt.Name);
+                //Game.PrintChat(((Obj_AI_Turret)tt).Distance(Player, true).ToString());
             }
         }
     }
