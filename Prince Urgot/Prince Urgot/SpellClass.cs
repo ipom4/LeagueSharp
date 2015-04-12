@@ -4,7 +4,7 @@ namespace Prince_Urgot
 {
     internal class SpellClass
     {
-        internal static Spell Q, Q2, W, E, R;
+        internal static Spell Q, Q2, W, E, R, D;
         public SpellClass()
         {
             Q = new Spell(SpellSlot.Q, 1000);
