@@ -82,7 +82,10 @@ namespace Prince_Urgot
                 Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 500);
                 //Game.PrintChat(minionChef.Name);
             }
-            
+            if (SpellClass.W.IsReady())// && distance <= 100 || (distance >= 900 && distance <= 1200) && t.HasBuff("urgotcorrosivedebuff", true))
+            {
+                SpellClass.W.Cast(Player, PacketCast);
+            }
         }
     }
 }
