@@ -44,6 +44,7 @@ namespace Prince_Urgot
             Player = ObjectManager.Player;
             _moveMode = MoveModeType.None;
             Game.OnUpdate += GameOnOnGameUpdate;
+            Drawing.OnDraw += DrawingOnOnDraw;
         }
         
         public Obj_AI_Turret ClosestAlliedTurret()
@@ -206,6 +207,14 @@ namespace Prince_Urgot
         private void BaseSideTurnAround(GameObject target, float radius)
         {
             
+        }
+        
+        private void DrawingOnOnDraw(EventArgs args)
+        {
+            if(_moveModeTarget!=null)
+            {
+                Render.Circle.DrawCircle(_moveModeTarget.Position, 65, _config.Item("AACircle").GetValue<Circle>().Color);
+            }
         }
     }
 }
