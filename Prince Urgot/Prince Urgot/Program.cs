@@ -84,7 +84,7 @@ namespace Prince_Urgot
             }
             if (SpellClass.W.IsReady())// && distance <= 100 || (distance >= 900 && distance <= 1200) && t.HasBuff("urgotcorrosivedebuff", true))
             {
-                SpellClass.W.Cast(Player, PacketCast);
+                SpellClass.W.Cast(Player, true);
             }
         }
     }
