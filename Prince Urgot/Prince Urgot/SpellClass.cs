@@ -12,6 +12,7 @@ namespace Prince_Urgot
             W = new Spell(SpellSlot.W);
             E = new Spell(SpellSlot.E, 900);
             R = new Spell(SpellSlot.R);
+            D = new Spell(SpellSlot.D);
 
             Q.SetSkillshot(0.10f, 100f, 1600f, true, SkillshotType.SkillshotLine);
             Q2.SetSkillshot(0.10f, 100f, 1600f, false, SkillshotType.SkillshotLine);
