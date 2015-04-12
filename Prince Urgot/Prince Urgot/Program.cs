@@ -67,8 +67,6 @@ namespace Prince_Urgot
             //var minionChef = ObjectManager.Get<Obj_AI_Minion>().OrderBy(m => m.Distance(ShitNexus, true)).First(m => m.Team == Player.Team);
             var minionChef = ObjectManager.Get<Obj_AI_Minion>().OrderBy(m => m.Distance(ShitNexus, true)).First(m => /*m.Name.Contains("Minion") &&*/ (!m.IsDead) && (m.IsAlly) && (m.Distance(ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(m, true)).First(t => t.Team != m.Team), true)>800));
             
-            Game.PrintChat(ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(minionChef, true)).First(t => t.Team != minionChef.Team).AttackRange().ToString());
-            
             var target = TargetSelector.GetTarget(-1, TargetSelector.DamageType.Physical);
             if (target != null)
             {
