@@ -73,14 +73,14 @@ namespace Prince_Urgot
                 Orbwalker.setMode(Orbwalking.OrbwalkingMode.Combo);
                 //Orbwalker.SetOrbwalkingPoint(minionChef.Position);//(target.Position - minionChef.Position)*0.5f+minionChef.Position);
                 Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 500);
-                Game.PrintChat(minionChef.Name);
+                //Game.PrintChat(minionChef.Name);
             }
             else
             {
                 Orbwalker.setMode(Orbwalking.OrbwalkingMode.LaneClear);
                 //Orbwalker.SetOrbwalkingPoint(minionChef.Position);
                 Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 500);
-                Game.PrintChat(minionChef.Name);
+                //Game.PrintChat(minionChef.Name);
             }
             
         }
