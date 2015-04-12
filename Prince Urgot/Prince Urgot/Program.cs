@@ -65,21 +65,21 @@ namespace Prince_Urgot
         private static void GameOnOnGameUpdate(EventArgs args)
         {
             //var minionChef = ObjectManager.Get<Obj_AI_Minion>().OrderBy(m => m.Distance(ShitNexus, true)).First(m => m.Team == Player.Team);
-            var minionChef = ObjectManager.Get<Obj_AI_Minion>().OrderBy(m => m.Distance(ShitNexus, true)).First(m => m.Name.Contains("Minion") && (!m.IsDead) && (m.IsAlly) && (m.Distance(ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(m, true)).First(t => t.Team != m.Team), true)>1174000));
+            var minionChef = ObjectManager.Get<Obj_AI_Minion>().OrderBy(m => m.Distance(ShitNexus, true)).First(m => m.Name.Contains("Minion") && (!m.IsDead) && (m.IsAlly) && (m.Distance(ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(m, true)).First(t => t.Team != m.Team), true)>1164000));
             
             var target = TargetSelector.GetTarget(-1, TargetSelector.DamageType.Physical);
             if (target != null)
             {
                 Orbwalker.setMode(Orbwalking.OrbwalkingMode.Combo);
                 //Orbwalker.SetOrbwalkingPoint(minionChef.Position);//(target.Position - minionChef.Position)*0.5f+minionChef.Position);
-                Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 1000);
-                //Game.PrintChat(minionChef.Name);
+                Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 500);
+                Game.PrintChat(minionChef.Name);
             }
             else
             {
                 Orbwalker.setMode(Orbwalking.OrbwalkingMode.LaneClear);
                 //Orbwalker.SetOrbwalkingPoint(minionChef.Position);
-                Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 1000);
+                Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 500);
                 //Game.PrintChat(minionChef.Name);
             }
             
