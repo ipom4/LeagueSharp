@@ -97,13 +97,13 @@ namespace Prince_Urgot
             {
                 if(minionChef.Distance(turretChef, true)>1000000)
                 {
-                    Orbwalker.setMode(Orbwalking.OrbwalkingMode.LastHit);
+                    Orbwalker.setMode(Orbwalking.OrbwalkingMode.LaneClear);
                     //Orbwalker.SetOrbwalkingPoint(minionChef.Position);
                     Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 10);
                 }
                 else
                 {
-                    Orbwalker.setMode(Orbwalking.OrbwalkingMode.LastHit);
+                    Orbwalker.setMode(Orbwalking.OrbwalkingMode.LaneClear);
                     //Orbwalker.SetOrbwalkingPoint(minionChef.Position);
                     Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 500);
                 }
