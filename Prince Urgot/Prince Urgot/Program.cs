@@ -73,10 +73,13 @@ namespace Prince_Urgot
             var target = TargetSelector.GetTarget(-1, TargetSelector.DamageType.Physical);
             if (target != null)
             {
-                Orbwalker.setMode(Orbwalking.OrbwalkingMode.Combo);
-                //Orbwalker.SetOrbwalkingPoint(minionChef.Position);//(target.Position - minionChef.Position)*0.5f+minionChef.Position);
-                Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 500);
-                //Game.PrintChat(minionChef.Name);
+                if(Player.Distance(ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(Player, true)).First(t => t.IsEnemy), true)>3000)
+                {
+                    Orbwalker.setMode(Orbwalking.OrbwalkingMode.Combo);
+                    //Orbwalker.SetOrbwalkingPoint(minionChef.Position);//(target.Position - minionChef.Position)*0.5f+minionChef.Position);
+                    Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 500);
+                    //Game.PrintChat(minionChef.Name);
+                }
             }
             else
             {
