@@ -68,26 +68,48 @@ namespace Prince_Urgot
         private static void GameOnOnGameUpdate(EventArgs args)
         {
             //var minionChef = ObjectManager.Get<Obj_AI_Minion>().OrderBy(m => m.Distance(ShitNexus, true)).First(m => m.Team == Player.Team);
-            var minionChef = ObjectManager.Get<Obj_AI_Minion>().OrderBy(m => m.Distance(ShitNexus, true)).First(m => m.Name.Contains("L1") && m.Name.Contains("Minion") && (!m.IsDead) && (m.IsAlly) && (m.Distance(ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(m, true)).First(t => t.Team != m.Team), true)>800));
+            Obj_AI_Minion minionChef = ObjectManager.Get<Obj_AI_Minion>().OrderBy(m => m.Distance(ShitNexus, true)).First(m => m.Name.Contains("L1") && m.Name.Contains("Minion") && (!m.IsDead) && (m.IsAlly) && (m.Distance(ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(m, true)).First(t => t.Team != m.Team), true)>800));
+            
+            Obj_AI_Turret turretChef = ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(Player, true)).First(t => t.IsEnemy);
+            
             
             var target = TargetSelector.GetTarget(-1, TargetSelector.DamageType.Physical);
-            if (target != null)
+            
+            if(Player.Distance(turretChef, true)>130000)//Si played not under turret
             {
-                if(Player.Distance(ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(Player, true)).First(t => t.IsEnemy), true)>130000)
+                if (target != null)
                 {
+                
                     Orbwalker.setMode(Orbwalking.OrbwalkingMode.Combo);
                     //Orbwalker.SetOrbwalkingPoint(minionChef.Position);//(target.Position - minionChef.Position)*0.5f+minionChef.Position);
                     Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 500);
                     //Game.PrintChat(minionChef.Name);
                 }
             }
+                else
+                {
+                    Orbwalker.setMode(Orbwalking.OrbwalkingMode.LaneClear);
+                    //Orbwalker.SetOrbwalkingPoint(minionChef.Position);
+                    Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 500);
+                    //Game.PrintChat(minionChef.Name);
+                }
+            }
             else
             {
-                Orbwalker.setMode(Orbwalking.OrbwalkingMode.LaneClear);
-                //Orbwalker.SetOrbwalkingPoint(minionChef.Position);
-                Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 500);
-                //Game.PrintChat(minionChef.Name);
+                if(minionChef.Distance(turretChef, true)>130000)
+                {
+                    Orbwalker.setMode(Orbwalking.OrbwalkingMode.LastHit);
+                    //Orbwalker.SetOrbwalkingPoint(minionChef.Position);
+                    Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 500);
+                }
+                else
+                {
+                    Orbwalker.setMode(Orbwalking.OrbwalkingMode.LastHit);
+                    //Orbwalker.SetOrbwalkingPoint(minionChef.Position);
+                    Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 500);
+                }
             }
+            
             if (SpellClass.W.IsReady())// && distance <= 100 || (distance >= 900 && distance <= 1200) && t.HasBuff("urgotcorrosivedebuff", true))
             {
                 SpellClass.W.Cast(Player, true);
