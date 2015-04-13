@@ -73,7 +73,7 @@ namespace Prince_Urgot
             var target = TargetSelector.GetTarget(-1, TargetSelector.DamageType.Physical);
             if (target != null)
             {
-                if(Player.Distance(ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(Player, true)).First(t => t.IsEnemy), true)>3000)
+                if(Player.Distance(ObjectManager.Get<Obj_AI_Turret>().OrderBy(t => t.Distance(Player, true)).First(t => t.IsEnemy), true)>130000)
                 {
                     Orbwalker.setMode(Orbwalking.OrbwalkingMode.Combo);
                     //Orbwalker.SetOrbwalkingPoint(minionChef.Position);//(target.Position - minionChef.Position)*0.5f+minionChef.Position);
