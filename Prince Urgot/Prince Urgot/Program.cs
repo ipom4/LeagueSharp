@@ -12,6 +12,9 @@ namespace Prince_Urgot
             get { return ObjectManager.Player; }
         }
 
+        static readonly ItemId[] SRShopList = { ItemId.Hextech_Revolver, ItemId.Hextech_Gunblade, ItemId.Sword_of_the_Occult , ItemId.Spirit_Visage, ItemId.Rod_of_Ages, ItemId.Will_of_the_Ancients, ItemId.Last_Whisper };//, ItemId.Liandrys_Torment, ItemId.Lich_Bane, ItemId.Locket_of_the_Iron_Solari, ItemId.Rod_of_Ages, ItemId.Void_Staff, ItemId.Hextech_Gunblade, ItemId.Sorcerers_Shoes };
+        
+        
         internal static Menu UrgotConfig;
         internal static Menu TargetSelectorMenu;
         //internal static Orbwalking.Orbwalker Orbwalker;
@@ -90,6 +93,15 @@ namespace Prince_Urgot
             {
                 //SpellClass.D.Cast(minionChef, true);
             }
+            
+                            
+            foreach (var item in SRShopList)
+                    {
+                        if (!HasItem(item))
+                        {
+                            BuyItem(item);
+                        }
+                    }
         }
     }
 }
