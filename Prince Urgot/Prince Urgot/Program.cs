@@ -74,8 +74,8 @@ namespace Prince_Urgot
             
             
             var target = TargetSelector.GetTarget(-1, TargetSelector.DamageType.Physical);
-            Game.PrintChat(Player.Distance(turretChef, true).ToString());
-            /*if(Player.Distance(turretChef, true)>130000)//Si played not under turret
+            //Game.PrintChat(Player.Distance(turretChef, true).ToString());
+            if(Player.Distance(turretChef, true)>1000000)//Si played not under turret
             {
                 if (target != null)
                 {
@@ -95,7 +95,7 @@ namespace Prince_Urgot
             }
             else
             {
-                if(minionChef.Distance(turretChef, true)>130000)
+                if(minionChef.Distance(turretChef, true)>1000000)
                 {
                     Orbwalker.setMode(Orbwalking.OrbwalkingMode.LastHit);
                     //Orbwalker.SetOrbwalkingPoint(minionChef.Position);
@@ -107,7 +107,7 @@ namespace Prince_Urgot
                     //Orbwalker.SetOrbwalkingPoint(minionChef.Position);
                     Orbwalker.setMoveMode(OrbDancer.MoveModeType.WalkAround, minionChef, 500);
                 }
-            }*/
+            }
             
             if (SpellClass.W.IsReady())// && distance <= 100 || (distance >= 900 && distance <= 1200) && t.HasBuff("urgotcorrosivedebuff", true))
             {
