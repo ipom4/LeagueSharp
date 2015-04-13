@@ -74,7 +74,7 @@ namespace Prince_Urgot
             
             
             var target = TargetSelector.GetTarget(-1, TargetSelector.DamageType.Physical);
-            
+            PrintChat(Player.Distance(turretChef, true).ToString);
             if(Player.Distance(turretChef, true)>130000)//Si played not under turret
             {
                 if (target != null)
