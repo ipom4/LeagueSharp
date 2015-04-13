@@ -121,7 +121,7 @@ namespace Prince_Urgot
                             
             foreach (var item in SRShopList)
                     {
-                        if (!Items.HasItem(item))
+                        if (!Items.HasItem((int)item))
                         {
                             Player.BuyItem(item);
                         }
